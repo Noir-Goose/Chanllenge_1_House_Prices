@@ -1,0 +1,7 @@
+{
+  "model": "XGBoost Regressor",
+  "validation_rows": 292,
+  "rmsle": 0.12361895410645654,
+  "rmse_log": 0.12361895410645654,
+  "mae": 15594.372418129287
+}

@@ -1,4 +1,7 @@
-﻿from pathlib import Path
+from pathlib import Path
+from datetime import datetime
+import json
+import shutil
 import sys
 
 import numpy as np
@@ -8,7 +11,7 @@ from sklearn.model_selection import train_test_split
 
 # Dùng chung đúng pipeline XGBoost của baseline để kết quả so sánh được.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from baseline import RANDOM_STATE, TRAIN_PATH, make_pipeline
+from baseline import RANDOM_STATE, TRAIN_PATH, make_pipeline, RESULTS_ROOT
 
 
 def main() -> None:
@@ -32,10 +35,27 @@ def main() -> None:
         np.log1p(actual_prices), np.log1p(predicted_prices)
     ) ** 0.5
 
+    metrics = {
+        "model": "XGBoost Regressor",
+        "strategy": "PoolQC missing -> None (no pool)",
+        "validation_rows": int(len(X_valid)),
+        "rmsle": float(rmsle),
+        "rmse_log": float(mean_squared_error(y_valid, predicted_log_prices) ** 0.5),
+        "mae": float(mean_absolute_error(actual_prices, predicted_prices)),
+    }
     print('Missing strategy: PoolQC missing -> "None" (no pool)')
-    print(f"Validation RMSLE: {rmsle:.5f}")
-    print(f"Validation RMSE (log): {mean_squared_error(y_valid, predicted_log_prices) ** 0.5:.5f}")
-    print(f"Validation MAE ($): {mean_absolute_error(actual_prices, predicted_prices):,.0f}")
+    print(f"Validation RMSLE: {metrics['rmsle']:.5f}")
+    print(f"Validation RMSE (log): {metrics['rmse_log']:.5f}")
+    print(f"Validation MAE ($): {metrics['mae']:,.0f}")
+
+    strategy_results = RESULTS_ROOT.parent / "strategy_1_PoolQC_none_xgb"
+    run_dir = strategy_results / datetime.now().strftime("run_%Y%m%d_%H%M%S")
+    run_dir.mkdir(parents=True, exist_ok=False)
+    (run_dir / "metrics.json").write_text(
+        json.dumps(metrics, indent=2), encoding="utf-8"
+    )
+    shutil.copy2(__file__, run_dir / "run_script.py")
+    print(f"Saved run results and script copy to: {run_dir}")
 
 
 if __name__ == "__main__":

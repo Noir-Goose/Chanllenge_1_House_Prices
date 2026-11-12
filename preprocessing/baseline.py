@@ -1,4 +1,7 @@
-﻿from pathlib import Path
+from pathlib import Path
+from datetime import datetime
+import json
+import shutil
 
 import numpy as np
 import pandas as pd
@@ -14,11 +17,11 @@ from xgboost import XGBRegressor
 ROOT = Path(__file__).resolve().parent.parent
 TRAIN_PATH = ROOT / "input" / "train.csv"
 TEST_PATH = ROOT / "input" / "test.csv"
-SUBMISSION_PATH = ROOT / "submission_baseline.csv"
+RESULTS_ROOT = Path(__file__).resolve().parent / "results" / "xgb_baseline"
 RANDOM_STATE = 42
 
 
-def make_pipeline(X: pd.DataFrame) -> Pipeline:
+def make_pipeline(X: pd.DataFrame, numeric_scaler=None) -> Pipeline:
     categorical_columns = X.select_dtypes(include=["object", "category", "string"]).columns
     numeric_columns = X.select_dtypes(include=["number", "bool"]).columns
 
@@ -28,7 +31,10 @@ def make_pipeline(X: pd.DataFrame) -> Pipeline:
             ("encoder", OneHotEncoder(handle_unknown="ignore")),
         ]
     )
-    numeric = Pipeline(steps=[("imputer", SimpleImputer(strategy="median"))])
+    numeric_steps = [("imputer", SimpleImputer(strategy="median"))]
+    if numeric_scaler is not None:
+        numeric_steps.append(("scaler", numeric_scaler))
+    numeric = Pipeline(steps=numeric_steps)
     preprocessing = ColumnTransformer(
         transformers=[
             ("categorical", categorical, categorical_columns),
@@ -70,11 +76,18 @@ def main() -> None:
     valid_predictions = np.maximum(np.expm1(valid_log_predictions), 0)
     valid_actual = np.expm1(y_valid)
 
+    metrics = {
+        "model": "XGBoost Regressor",
+        "validation_rows": int(len(X_valid)),
+        "rmsle": float(mean_squared_error(np.log1p(valid_actual), np.log1p(valid_predictions)) ** 0.5),
+        "rmse_log": float(mean_squared_error(y_valid, valid_log_predictions) ** 0.5),
+        "mae": float(mean_absolute_error(valid_actual, valid_predictions)),
+    }
     print("Baseline: XGBoost Regressor (target = log1p(SalePrice))")
     print(f"Validation rows: {len(X_valid)}")
-    print(f"RMSLE: {mean_squared_error(np.log1p(valid_actual), np.log1p(valid_predictions)) ** 0.5:.5f}")
-    print(f"RMSE (log): {mean_squared_error(y_valid, valid_log_predictions) ** 0.5:.5f}")
-    print(f"MAE ($): {mean_absolute_error(valid_actual, valid_predictions):,.0f}")
+    print(f"RMSLE: {metrics['rmsle']:.5f}")
+    print(f"RMSE (log): {metrics['rmse_log']:.5f}")
+    print(f"MAE ($): {metrics['mae']:,.0f}")
 
     final_model = make_pipeline(X)
     final_model.fit(X, y)
@@ -85,8 +98,14 @@ def main() -> None:
             "SalePrice": np.maximum(np.expm1(test_log_predictions), 0),
         }
     )
-    submission.to_csv(SUBMISSION_PATH, index=False)
-    print(f"Saved test predictions to: {SUBMISSION_PATH}")
+    run_dir = RESULTS_ROOT / datetime.now().strftime("run_%Y%m%d_%H%M%S")
+    run_dir.mkdir(parents=True, exist_ok=False)
+    submission.to_csv(run_dir / "submission_baseline.csv", index=False)
+    (run_dir / "metrics.json").write_text(
+        json.dumps(metrics, indent=2), encoding="utf-8"
+    )
+    shutil.copy2(__file__, run_dir / "run_script.py")
+    print(f"Saved run results and script copy to: {run_dir}")
 
 
 if __name__ == "__main__":
