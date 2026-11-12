@@ -3,12 +3,12 @@
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
-from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
+from xgboost import XGBRegressor
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,12 +35,16 @@ def make_pipeline(X: pd.DataFrame) -> Pipeline:
             ("numeric", numeric, numeric_columns),
         ]
     )
-    model = RandomForestRegressor(
-        n_estimators=300,
-        min_samples_leaf=2,
-        max_features=0.8,
+    model = XGBRegressor(
+        n_estimators=500,
+        learning_rate=0.05,
+        max_depth=3,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        objective="reg:squarederror",
         random_state=RANDOM_STATE,
         n_jobs=-1,
+        tree_method="hist",
     )
     return Pipeline(steps=[("preprocessing", preprocessing), ("model", model)])
 
@@ -66,7 +70,7 @@ def main() -> None:
     valid_predictions = np.maximum(np.expm1(valid_log_predictions), 0)
     valid_actual = np.expm1(y_valid)
 
-    print("Baseline: Random Forest Regressor (target = log1p(SalePrice))")
+    print("Baseline: XGBoost Regressor (target = log1p(SalePrice))")
     print(f"Validation rows: {len(X_valid)}")
     print(f"RMSLE: {mean_squared_error(np.log1p(valid_actual), np.log1p(valid_predictions)) ** 0.5:.5f}")
     print(f"RMSE (log): {mean_squared_error(y_valid, valid_log_predictions) ** 0.5:.5f}")
