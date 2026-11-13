@@ -26,7 +26,7 @@ from sklearn.preprocessing import MaxAbsScaler, OneHotEncoder
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 TRAIN_PATH = PROJECT_ROOT / "input" / "train.csv"
-RESULTS_ROOT = Path(__file__).resolve().parent / "results" / "gradient_boosting_importance"
+RESULTS_ROOT = Path(__file__).resolve().parent / "results" / "gradient_boosting_feature_selection"
 RANDOM_STATE = 42
 CLASS_LABELS = [0, 1, 2]
 TOP_K_VALUES = [10, 20, 30, "all"]
@@ -177,7 +177,12 @@ def main():
         "feature": final_names,
         "importance": final_importances,
     }).sort_values("importance", ascending=False)
+    selected_feature_names = set(final_names[selected])
+    importance_frame["selected"] = importance_frame["feature"].isin(selected_feature_names)
     importance_frame.to_csv(run_dir / "feature_importance.csv", index=False)
+    importance_frame.loc[importance_frame["selected"], ["feature", "importance"]].to_csv(
+        run_dir / "selected_features.csv", index=False
+    )
 
     top = importance_frame.head(20).sort_values("importance")
     fig, ax = plt.subplots(figsize=(9, 7))
