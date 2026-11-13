@@ -11,13 +11,13 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
-from xgboost import XGBRegressor
+from sklearn.ensemble import GradientBoostingRegressor
 
 
 ROOT = Path(__file__).resolve().parent.parent
 TRAIN_PATH = ROOT / "input" / "train.csv"
 TEST_PATH = ROOT / "input" / "test.csv"
-RESULTS_ROOT = Path(__file__).resolve().parent / "results" / "xgb_baseline"
+RESULTS_ROOT = Path(__file__).resolve().parent / "results" / "gradient_boosting_baseline"
 RANDOM_STATE = 42
 
 
@@ -39,18 +39,15 @@ def make_pipeline(X: pd.DataFrame, numeric_scaler=None) -> Pipeline:
         transformers=[
             ("categorical", categorical, categorical_columns),
             ("numeric", numeric, numeric_columns),
-        ]
+        ],
+        sparse_threshold=0,
     )
-    model = XGBRegressor(
-        n_estimators=500,
+    model = GradientBoostingRegressor(
+        n_estimators=300,
         learning_rate=0.05,
-        max_depth=3,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        objective="reg:squarederror",
+        max_depth=2,
+        loss="squared_error",
         random_state=RANDOM_STATE,
-        n_jobs=-1,
-        tree_method="hist",
     )
     return Pipeline(steps=[("preprocessing", preprocessing), ("model", model)])
 
@@ -77,13 +74,13 @@ def main() -> None:
     valid_actual = np.expm1(y_valid)
 
     metrics = {
-        "model": "XGBoost Regressor",
+        "model": "Gradient Boosting Regressor",
         "validation_rows": int(len(X_valid)),
         "rmsle": float(mean_squared_error(np.log1p(valid_actual), np.log1p(valid_predictions)) ** 0.5),
         "rmse_log": float(mean_squared_error(y_valid, valid_log_predictions) ** 0.5),
         "mae": float(mean_absolute_error(valid_actual, valid_predictions)),
     }
-    print("Baseline: XGBoost Regressor (target = log1p(SalePrice))")
+    print("Baseline: Gradient Boosting Regressor (target = log1p(SalePrice))")
     print(f"Validation rows: {len(X_valid)}")
     print(f"RMSLE: {metrics['rmsle']:.5f}")
     print(f"RMSE (log): {metrics['rmse_log']:.5f}")

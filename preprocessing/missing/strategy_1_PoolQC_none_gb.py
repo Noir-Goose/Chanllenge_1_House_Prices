@@ -1,3 +1,4 @@
+import importlib
 from pathlib import Path
 from datetime import datetime
 import json
@@ -9,7 +10,7 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 
-# Dùng chung đúng pipeline XGBoost của baseline để kết quả so sánh được.
+# Dùng chung đúng pipeline Gradient Boosting của baseline để kết quả so sánh được.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from baseline import RANDOM_STATE, TRAIN_PATH, make_pipeline, RESULTS_ROOT
 
@@ -36,7 +37,7 @@ def main() -> None:
     ) ** 0.5
 
     metrics = {
-        "model": "XGBoost Regressor",
+        "model": "Gradient Boosting Regressor",
         "strategy": "PoolQC missing -> None (no pool)",
         "validation_rows": int(len(X_valid)),
         "rmsle": float(rmsle),

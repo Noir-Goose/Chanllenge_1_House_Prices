@@ -1,0 +1,144 @@
+{
+  "model": "Gradient Boosting Regressor",
+  "validation_rows": 292,
+  "baseline": {
+    "rmsle": 0.13603293585521525,
+    "rmse_log": 0.13603293585521525,
+    "mae": 17197.12365114315
+  },
+  "experiments": [
+    {
+      "column": "LotArea",
+      "strategy": "IQR capping",
+      "lower_bound": 1418.125,
+      "upper_bound": 17869.125,
+      "train_percent_clipped": 4.623287671232877,
+      "rmsle": 0.13576492453017505,
+      "rmse_log": 0.13576492453017505,
+      "mae": 17069.648292237704,
+      "rmsle_change_vs_baseline": -0.00026801132504020164
+    },
+    {
+      "column": "LotArea",
+      "strategy": "Z-score capping",
+      "lower_bound": -21588.45646971332,
+      "upper_bound": 42967.74071628867,
+      "train_percent_clipped": 1.0273972602739725,
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    },
+    {
+      "column": "GrLivArea",
+      "strategy": "IQR capping",
+      "lower_bound": 176.375,
+      "upper_bound": 2761.375,
+      "train_percent_clipped": 1.9691780821917808,
+      "rmsle": 0.13856547756819124,
+      "rmse_log": 0.13856547756819124,
+      "mae": 17326.659564000653,
+      "rmsle_change_vs_baseline": 0.002532541712975983
+    },
+    {
+      "column": "GrLivArea",
+      "strategy": "Z-score capping",
+      "lower_bound": -45.896517624210446,
+      "upper_bound": 3100.6995998159914,
+      "train_percent_clipped": 1.2842465753424657,
+      "rmsle": 0.139118040231868,
+      "rmse_log": 0.139118040231868,
+      "mae": 17419.106248357475,
+      "rmsle_change_vs_baseline": 0.003085104376652742
+    },
+    {
+      "column": "TotalBsmtSF",
+      "strategy": "IQR capping",
+      "lower_bound": 41.125,
+      "upper_bound": 2054.125,
+      "train_percent_clipped": 4.023972602739726,
+      "rmsle": 0.13630433250180848,
+      "rmse_log": 0.13630433250180848,
+      "mae": 17224.637954091402,
+      "rmsle_change_vs_baseline": 0.0002713966465932305
+    },
+    {
+      "column": "TotalBsmtSF",
+      "strategy": "Z-score capping",
+      "lower_bound": -260.2575867546748,
+      "upper_bound": 2383.8003949738527,
+      "train_percent_clipped": 0.684931506849315,
+      "rmsle": 0.13630433250180848,
+      "rmse_log": 0.13630433250180848,
+      "mae": 17224.637954091402,
+      "rmsle_change_vs_baseline": 0.0002713966465932305
+    },
+    {
+      "column": "LotFrontage",
+      "strategy": "IQR capping",
+      "lower_bound": 27.5,
+      "upper_bound": 111.5,
+      "train_percent_clipped": 5.821917808219178,
+      "rmsle": 0.1362585790782754,
+      "rmse_log": 0.1362585790782754,
+      "mae": 17253.635250954518,
+      "rmsle_change_vs_baseline": 0.00022564322306015128
+    },
+    {
+      "column": "LotFrontage",
+      "strategy": "Z-score capping",
+      "lower_bound": -4.347213758317366,
+      "upper_bound": 145.03491091920066,
+      "train_percent_clipped": 0.8561643835616438,
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    },
+    {
+      "column": "GarageArea",
+      "strategy": "IQR capping",
+      "lower_bound": -11.5,
+      "upper_bound": 928.5,
+      "train_percent_clipped": 1.5410958904109588,
+      "rmsle": 0.13611918181786029,
+      "rmse_log": 0.13611918181786029,
+      "mae": 17209.74466411058,
+      "rmsle_change_vs_baseline": 8.624596264503182e-05
+    },
+    {
+      "column": "GarageArea",
+      "strategy": "Z-score capping",
+      "lower_bound": -157.0121463419881,
+      "upper_bound": 1109.5600915474674,
+      "train_percent_clipped": 0.4280821917808219,
+      "rmsle": 0.13611918181786029,
+      "rmse_log": 0.13611918181786029,
+      "mae": 17209.74466411058,
+      "rmsle_change_vs_baseline": 8.624596264503182e-05
+    },
+    {
+      "column": "MasVnrArea",
+      "strategy": "IQR capping",
+      "lower_bound": -249.0,
+      "upper_bound": 415.0,
+      "train_percent_clipped": 6.592465753424658,
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    },
+    {
+      "column": "MasVnrArea",
+      "strategy": "Z-score capping",
+      "lower_bound": -415.3247702778272,
+      "upper_bound": 622.8686601229219,
+      "train_percent_clipped": 2.2260273972602738,
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    }
+  ],
+  "note": "Each experiment caps one numeric feature using training-only bounds; lower RMSLE is better."
+}

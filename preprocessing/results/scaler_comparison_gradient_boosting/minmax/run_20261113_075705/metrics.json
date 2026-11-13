@@ -1,0 +1,46 @@
+{
+  "model": "Gradient Boosting Regressor",
+  "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+  "outlier_strategy": "IQR capping using training-only bounds",
+  "scaler_comparison": {
+    "no_scaler": {
+      "rmsle": 0.13490712865608193,
+      "rmse_log": 0.13490712865608193,
+      "mae": 17443.869870292267
+    },
+    "minmax_scaler": {
+      "rmsle": 0.13492145550322404,
+      "rmse_log": 0.13492145550322404,
+      "mae": 17447.998269237207
+    }
+  },
+  "validation_rows": 292,
+  "iqr_bounds": {
+    "LotArea": {
+      "lower": 1418.125,
+      "upper": 17869.125
+    },
+    "GrLivArea": {
+      "lower": 176.375,
+      "upper": 2761.375
+    },
+    "TotalBsmtSF": {
+      "lower": 41.125,
+      "upper": 2054.125
+    },
+    "LotFrontage": {
+      "lower": 31.5,
+      "upper": 107.5
+    },
+    "GarageArea": {
+      "lower": -11.5,
+      "upper": 928.5
+    },
+    "MasVnrArea": {
+      "lower": -249.0,
+      "upper": 415.0
+    }
+  },
+  "rmsle_difference_minmax_minus_none": 1.4326847142115406e-05,
+  "note": "Lower RMSLE is better."
+}

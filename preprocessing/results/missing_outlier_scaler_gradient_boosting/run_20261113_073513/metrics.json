@@ -1,0 +1,247 @@
+{
+  "model": "Gradient Boosting Regressor",
+  "validation_rows": 292,
+  "baseline": {
+    "rmsle": 0.13603293585521525,
+    "rmse_log": 0.13603293585521525,
+    "mae": 17197.12365114315
+  },
+  "experiments": [
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "none",
+      "scaler": "none",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {},
+      "rmsle": 0.13672074588549113,
+      "rmse_log": 0.13672074588549113,
+      "mae": 17484.50802015368,
+      "rmsle_change_vs_baseline": 0.0006878100302758761
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "none",
+      "scaler": "standard",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {},
+      "rmsle": 0.13682055387256542,
+      "rmse_log": 0.13682055387256542,
+      "mae": 17521.2026083138,
+      "rmsle_change_vs_baseline": 0.0007876180173501668
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "none",
+      "scaler": "minmax",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {},
+      "rmsle": 0.1365474766300593,
+      "rmse_log": 0.1365474766300593,
+      "mae": 17463.1521008361,
+      "rmsle_change_vs_baseline": 0.0005145407748440578
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "none",
+      "scaler": "robust",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {},
+      "rmsle": 0.1367037620739626,
+      "rmse_log": 0.1367037620739626,
+      "mae": 17477.881679973278,
+      "rmsle_change_vs_baseline": 0.000670826218747339
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "none",
+      "scaler": "maxabs",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {},
+      "rmsle": 0.13676799791205435,
+      "rmse_log": 0.13676799791205435,
+      "mae": 17509.736513168245,
+      "rmsle_change_vs_baseline": 0.0007350620568390975
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "IQR",
+      "scaler": "none",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 4.623287671232877,
+        "GrLivArea": 1.9691780821917808,
+        "TotalBsmtSF": 4.023972602739726,
+        "LotFrontage": 7.277397260273973,
+        "GarageArea": 1.5410958904109588,
+        "MasVnrArea": 6.592465753424658
+      },
+      "rmsle": 0.13490712865608193,
+      "rmse_log": 0.13490712865608193,
+      "mae": 17443.869870292267,
+      "rmsle_change_vs_baseline": -0.0011258071991333274
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "IQR",
+      "scaler": "standard",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 4.623287671232877,
+        "GrLivArea": 1.9691780821917808,
+        "TotalBsmtSF": 4.023972602739726,
+        "LotFrontage": 7.277397260273973,
+        "GarageArea": 1.5410958904109588,
+        "MasVnrArea": 6.592465753424658
+      },
+      "rmsle": 0.13497285741842593,
+      "rmse_log": 0.13497285741842593,
+      "mae": 17477.421074315076,
+      "rmsle_change_vs_baseline": -0.001060078436789319
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "IQR",
+      "scaler": "minmax",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 4.623287671232877,
+        "GrLivArea": 1.9691780821917808,
+        "TotalBsmtSF": 4.023972602739726,
+        "LotFrontage": 7.277397260273973,
+        "GarageArea": 1.5410958904109588,
+        "MasVnrArea": 6.592465753424658
+      },
+      "rmsle": 0.13492145550322404,
+      "rmse_log": 0.13492145550322404,
+      "mae": 17447.998269237207,
+      "rmsle_change_vs_baseline": -0.001111480351991212
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "IQR",
+      "scaler": "robust",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 4.623287671232877,
+        "GrLivArea": 1.9691780821917808,
+        "TotalBsmtSF": 4.023972602739726,
+        "LotFrontage": 7.277397260273973,
+        "GarageArea": 1.5410958904109588,
+        "MasVnrArea": 6.592465753424658
+      },
+      "rmsle": 0.13488945393932697,
+      "rmse_log": 0.13488945393932697,
+      "mae": 17437.248955269028,
+      "rmsle_change_vs_baseline": -0.0011434819158882836
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "IQR",
+      "scaler": "maxabs",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 4.623287671232877,
+        "GrLivArea": 1.9691780821917808,
+        "TotalBsmtSF": 4.023972602739726,
+        "LotFrontage": 7.277397260273973,
+        "GarageArea": 1.5410958904109588,
+        "MasVnrArea": 6.592465753424658
+      },
+      "rmsle": 0.1349228231158085,
+      "rmse_log": 0.1349228231158085,
+      "mae": 17453.599823841054,
+      "rmsle_change_vs_baseline": -0.0011101127394067545
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "Z-score",
+      "scaler": "none",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 1.0273972602739725,
+        "GrLivArea": 1.2842465753424657,
+        "TotalBsmtSF": 0.684931506849315,
+        "LotFrontage": 1.0273972602739725,
+        "GarageArea": 0.4280821917808219,
+        "MasVnrArea": 2.2260273972602738
+      },
+      "rmsle": 0.13832190987462092,
+      "rmse_log": 0.13832190987462092,
+      "mae": 17681.15565061491,
+      "rmsle_change_vs_baseline": 0.0022889740194056707
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "Z-score",
+      "scaler": "standard",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 1.0273972602739725,
+        "GrLivArea": 1.2842465753424657,
+        "TotalBsmtSF": 0.684931506849315,
+        "LotFrontage": 1.0273972602739725,
+        "GarageArea": 0.4280821917808219,
+        "MasVnrArea": 2.2260273972602738
+      },
+      "rmsle": 0.138360639657996,
+      "rmse_log": 0.138360639657996,
+      "mae": 17685.966273378992,
+      "rmsle_change_vs_baseline": 0.002327703802780745
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "Z-score",
+      "scaler": "minmax",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 1.0273972602739725,
+        "GrLivArea": 1.2842465753424657,
+        "TotalBsmtSF": 0.684931506849315,
+        "LotFrontage": 1.0273972602739725,
+        "GarageArea": 0.4280821917808219,
+        "MasVnrArea": 2.2260273972602738
+      },
+      "rmsle": 0.13832190987462092,
+      "rmse_log": 0.13832190987462092,
+      "mae": 17681.15565061491,
+      "rmsle_change_vs_baseline": 0.0022889740194056707
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "Z-score",
+      "scaler": "robust",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 1.0273972602739725,
+        "GrLivArea": 1.2842465753424657,
+        "TotalBsmtSF": 0.684931506849315,
+        "LotFrontage": 1.0273972602739725,
+        "GarageArea": 0.4280821917808219,
+        "MasVnrArea": 2.2260273972602738
+      },
+      "rmsle": 0.13830522582726562,
+      "rmse_log": 0.13830522582726562,
+      "mae": 17674.73842947191,
+      "rmsle_change_vs_baseline": 0.0022722899720503675
+    },
+    {
+      "missing_strategy": "semantic None / numeric 0 or train median / Electrical mode",
+      "outlier_strategy": "Z-score",
+      "scaler": "maxabs",
+      "train_rows": 1168,
+      "outlier_percent_clipped_by_column": {
+        "LotArea": 1.0273972602739725,
+        "GrLivArea": 1.2842465753424657,
+        "TotalBsmtSF": 0.684931506849315,
+        "LotFrontage": 1.0273972602739725,
+        "GarageArea": 0.4280821917808219,
+        "MasVnrArea": 2.2260273972602738
+      },
+      "rmsle": 0.1384172579239046,
+      "rmse_log": 0.1384172579239046,
+      "mae": 17730.684023834896,
+      "rmsle_change_vs_baseline": 0.002384322068689354
+    }
+  ],
+  "note": "Missing values are handled first, then outliers are capped using training-only bounds. Scalers apply only to numeric features. Lower RMSLE is better."
+}

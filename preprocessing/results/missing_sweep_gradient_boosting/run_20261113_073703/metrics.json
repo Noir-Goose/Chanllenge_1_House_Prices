@@ -1,0 +1,164 @@
+{
+  "model": "Gradient Boosting Regressor",
+  "validation_rows": 292,
+  "baseline": {
+    "rmsle": 0.13603293585521525,
+    "rmse_log": 0.13603293585521525,
+    "mae": 17197.12365114315
+  },
+  "experiments": [
+    {
+      "column": "PoolQC",
+      "strategy": "constant: None",
+      "rmsle": 0.13860741149363634,
+      "rmse_log": 0.13860741149363634,
+      "mae": 17385.959150041494,
+      "rmsle_change_vs_baseline": 0.0025744756384210865
+    },
+    {
+      "column": "MiscFeature",
+      "strategy": "constant: None",
+      "rmsle": 0.1383850604212179,
+      "rmse_log": 0.1383850604212179,
+      "mae": 17357.319090122604,
+      "rmsle_change_vs_baseline": 0.0023521245660026446
+    },
+    {
+      "column": "Alley",
+      "strategy": "constant: None",
+      "rmsle": 0.1391082069163838,
+      "rmse_log": 0.1391082069163838,
+      "mae": 17384.163728166728,
+      "rmsle_change_vs_baseline": 0.003075271061168533
+    },
+    {
+      "column": "Fence",
+      "strategy": "constant: None",
+      "rmsle": 0.13815313253191144,
+      "rmse_log": 0.13815313253191144,
+      "mae": 17359.28957803139,
+      "rmsle_change_vs_baseline": 0.00212019667669619
+    },
+    {
+      "column": "MasVnrType",
+      "strategy": "constant: None",
+      "rmsle": 0.136115134896234,
+      "rmse_log": 0.136115134896234,
+      "mae": 17120.77100205655,
+      "rmsle_change_vs_baseline": 8.219904101874898e-05
+    },
+    {
+      "column": "FireplaceQu",
+      "strategy": "constant: None",
+      "rmsle": 0.13732799498416007,
+      "rmse_log": 0.13732799498416007,
+      "mae": 17241.913064935983,
+      "rmsle_change_vs_baseline": 0.0012950591289448143
+    },
+    {
+      "column": "LotFrontage",
+      "strategy": "median",
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    },
+    {
+      "column": "GarageType",
+      "strategy": "constant: None",
+      "rmsle": 0.13634035138880615,
+      "rmse_log": 0.13634035138880615,
+      "mae": 17350.052608593942,
+      "rmsle_change_vs_baseline": 0.000307415533590899
+    },
+    {
+      "column": "GarageYrBlt",
+      "strategy": "constant: 0",
+      "rmsle": 0.13761228546652868,
+      "rmse_log": 0.13761228546652868,
+      "mae": 17411.450655976132,
+      "rmsle_change_vs_baseline": 0.0015793496113134242
+    },
+    {
+      "column": "GarageFinish",
+      "strategy": "constant: None",
+      "rmsle": 0.13635773030266515,
+      "rmse_log": 0.13635773030266515,
+      "mae": 17346.384176937892,
+      "rmsle_change_vs_baseline": 0.0003247944474498998
+    },
+    {
+      "column": "GarageQual",
+      "strategy": "constant: None",
+      "rmsle": 0.13703733166933682,
+      "rmse_log": 0.13703733166933682,
+      "mae": 17250.495485094132,
+      "rmsle_change_vs_baseline": 0.001004395814121567
+    },
+    {
+      "column": "GarageCond",
+      "strategy": "constant: None",
+      "rmsle": 0.1369092688090914,
+      "rmse_log": 0.1369092688090914,
+      "mae": 17277.26762038796,
+      "rmsle_change_vs_baseline": 0.0008763329538761522
+    },
+    {
+      "column": "BsmtFinType2",
+      "strategy": "constant: None",
+      "rmsle": 0.13629426231181263,
+      "rmse_log": 0.13629426231181263,
+      "mae": 17122.608060328486,
+      "rmsle_change_vs_baseline": 0.0002613264565973772
+    },
+    {
+      "column": "BsmtExposure",
+      "strategy": "constant: None",
+      "rmsle": 0.13571698847438887,
+      "rmse_log": 0.13571698847438887,
+      "mae": 17191.940658170664,
+      "rmsle_change_vs_baseline": -0.0003159473808263813
+    },
+    {
+      "column": "BsmtFinType1",
+      "strategy": "constant: None",
+      "rmsle": 0.13711032230884124,
+      "rmse_log": 0.13711032230884124,
+      "mae": 17191.336450393614,
+      "rmsle_change_vs_baseline": 0.0010773864536259836
+    },
+    {
+      "column": "BsmtCond",
+      "strategy": "constant: None",
+      "rmsle": 0.13875087860687987,
+      "rmse_log": 0.13875087860687987,
+      "mae": 17294.265983426692,
+      "rmsle_change_vs_baseline": 0.0027179427516646204
+    },
+    {
+      "column": "BsmtQual",
+      "strategy": "constant: None",
+      "rmsle": 0.1379966632353881,
+      "rmse_log": 0.1379966632353881,
+      "mae": 17297.69957922184,
+      "rmsle_change_vs_baseline": 0.001963727380172836
+    },
+    {
+      "column": "MasVnrArea",
+      "strategy": "constant: 0",
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    },
+    {
+      "column": "Electrical",
+      "strategy": "most_frequent",
+      "rmsle": 0.13603293585521525,
+      "rmse_log": 0.13603293585521525,
+      "mae": 17197.12365114315,
+      "rmsle_change_vs_baseline": 0.0
+    }
+  ],
+  "note": "Each experiment changes one missing-value strategy only; lower RMSLE is better."
+}

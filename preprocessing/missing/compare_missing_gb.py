@@ -99,13 +99,13 @@ def main():
         print(f"{column}: RMSLE {scores['rmsle']:.5f} (baseline {baseline['rmsle']:.5f})")
 
     metrics = {
-        "model": "XGBoost Regressor",
+        "model": "Gradient Boosting Regressor",
         "validation_rows": int(len(X_valid)),
         "baseline": baseline,
         "experiments": experiments,
         "note": "Each experiment changes one missing-value strategy only; lower RMSLE is better.",
     }
-    run_dir = (RESULTS_ROOT.parent / "missing_sweep_xgb" /
+    run_dir = (RESULTS_ROOT.parent / "missing_sweep_gradient_boosting" /
                datetime.now().strftime("run_%Y%m%d_%H%M%S"))
     run_dir.mkdir(parents=True, exist_ok=False)
     (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
