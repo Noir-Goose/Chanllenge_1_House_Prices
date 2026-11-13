@@ -1,0 +1,57 @@
+{
+  "model": "Gradient Boosting Classifier",
+  "target_classes": {
+    "0": "SalePrice < 150000",
+    "1": "150000 <= SalePrice < 250000",
+    "2": "SalePrice >= 250000"
+  },
+  "validation": {
+    "accuracy": 0.863013698630137,
+    "precision_macro": 0.8672164948453608,
+    "recall_macro": 0.817642017068632,
+    "f1_macro": 0.8361676318857407,
+    "log_loss": 0.36631703438698476
+  },
+  "test": {
+    "accuracy": 0.821917808219178,
+    "precision_macro": 0.8566398282340311,
+    "recall_macro": 0.8098731311131279,
+    "f1_macro": 0.8291143330908232,
+    "log_loss": 0.3966216330153479,
+    "roc_auc_ovr_macro": 0.9478936520709537,
+    "average_precision_macro": 0.9156500689599513
+  },
+  "learning_curve": [
+    {
+      "training_rows": 204,
+      "train_macro_f1": 1.0,
+      "validation_macro_f1": 0.8063922506100901
+    },
+    {
+      "training_rows": 408,
+      "train_macro_f1": 0.9831146943998134,
+      "validation_macro_f1": 0.816867443193302
+    },
+    {
+      "training_rows": 613,
+      "train_macro_f1": 0.9749333324907323,
+      "validation_macro_f1": 0.8287115638558763
+    },
+    {
+      "training_rows": 817,
+      "train_macro_f1": 0.960422183387143,
+      "validation_macro_f1": 0.8190817545656254
+    },
+    {
+      "training_rows": 1022,
+      "train_macro_f1": 0.9495299147557618,
+      "validation_macro_f1": 0.8361676318857407
+    }
+  ],
+  "split_rows": {
+    "train": 1022,
+    "validation": 219,
+    "test": 219
+  },
+  "preprocessing": "Semantic missing handling, IQR capping, then numeric median binarization."
+}
