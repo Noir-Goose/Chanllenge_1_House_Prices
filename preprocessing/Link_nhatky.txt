@@ -1,0 +1,13 @@
+Kết quả thí nghiệm lưu trong excel:
+https://1drv.ms/x/c/37dad5dc96204f3c/IQCA0MbKOM-JRL4LWtZGwjFZAX9PIsP3Dry2Ky6fUSx0Av0?e=AbLAGT
+
+Ngày 9/11/2026:(Phạm Quang Trung)
+- Phân tích khám phá dữ liệu về giá nhà, tìm hiểu các loại dữ liệu, dữ liệu bị missing, outlier, unknown, lưu kết
+quả vào folder thí nghiệm eda_11112026.
+- Thí nghiệm các chiến lược xử lý từng biến missing outlier, và đánh giá 4 mô hình trên tập train validate sau khi x
+ử lý lưu kết quả vào missing_variables_ngay11_thang11.
+
+Ngáy 10/11/2026: (Phạm Quang Trung)
+- Tiến hành thí nghiệm mô hình logistic regression, xử lý từng biến missing với chiến lược tốt nhất cho mô hình, 
+rồi kết hợp xử lý outlier, rồi kết hợp scaler normalise và standard riêng biệt, rồi kết hợp scaler tốt nhất cho từng biến
+biến numeric và continous. Kết quả thí nghiệm lưu vào folder LR/Logistic_ngay10_th11

@@ -1,0 +1,8 @@
+Ngày 11/11/2026: (Phạm Quang Trung)
+- Làm thí nghiệm logistic regression áp dụng 3 filter riêng biệt ANOVA F-test, mutual information, 
+chi-square cho mô hình áp dụng tiền xử lý + scaler sử dụng k-fold = 5 để huấn luyện và đánh giá. 
+Kết quả features được chọn sẽ được lưu trong logistic_regression_ngay11_th11.
+
+Ngày 13/11/2026: (Phạm Quang Trung) 
+- Làm thí nghiệm feature selection cho logistic regression + tiền xử lý + scaler, áp dụng 3 wrapper backward, 
+forward, RFE. Kết quả thí nghiệm + plots lưu trong folder logistic regression_ng13_th11

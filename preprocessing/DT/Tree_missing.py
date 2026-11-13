@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
 import matplotlib.pyplot as plt
 
 from sklearn.impute import SimpleImputer
@@ -19,7 +18,7 @@ SEEDS = [42]
 
 # 1. Đọc dữ liệu House Prices
 # Nhãn phân loại: Low (<150000), Medium (150000-249999), High (>=250000)
-df = pd.read_csv(Path(__file__).resolve().parents[2] / "input" / "train.csv", low_memory=False)
+df = pd.read_csv("../data/raw/train.csv", low_memory=False)
 df["PriceCategory"] = pd.cut(
     df["SalePrice"], bins=[-np.inf, 150000, 250000, np.inf],
     labels=["Low", "Medium", "High"], right=False

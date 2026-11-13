@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from pathlib import Path
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler, LabelEncoder
@@ -19,7 +18,7 @@ SEEDS = [42]
 
 # 1. Đọc dữ liệu
 # Dữ liệu House Prices: train.csv có nhãn SalePrice, test.csv không có nhãn.
-df = pd.read_csv(Path(__file__).resolve().parents[2] / "input" / "train.csv", low_memory=False)
+df = pd.read_csv("../data/raw/train.csv", low_memory=False)
 
 # Phân loại giá nhà thành ba nhóm, cố định ngưỡng giữa các chiến lược.
 def price_group(price):
