@@ -1,0 +1,57 @@
+{
+  "model": "Gradient Boosting Classifier",
+  "target_classes": {
+    "0": "SalePrice < 150000",
+    "1": "150000 <= SalePrice < 250000",
+    "2": "SalePrice >= 250000"
+  },
+  "preprocessing": "Semantic missing handling, IQR capping, median imputation, one-hot encoding, MaxAbsScaler.",
+  "feature_selection": "Gradient Boosting impurity-based feature importance on training split; choose feature count by validation macro-F1.",
+  "validation_comparison": [
+    {
+      "selection": "top_10",
+      "feature_count": 10,
+      "accuracy": 0.8310502283105022,
+      "precision_macro": 0.8142551892551891,
+      "recall_macro": 0.8047970006141775,
+      "f1_macro": 0.8092267982978365
+    },
+    {
+      "selection": "top_20",
+      "feature_count": 20,
+      "accuracy": 0.8401826484018264,
+      "precision_macro": 0.8200253578133762,
+      "recall_macro": 0.805784726232709,
+      "f1_macro": 0.8121780488272635
+    },
+    {
+      "selection": "top_30",
+      "feature_count": 30,
+      "accuracy": 0.8721461187214612,
+      "precision_macro": 0.8595182219683851,
+      "recall_macro": 0.843352675338485,
+      "f1_macro": 0.8505247438258489
+    },
+    {
+      "selection": "all",
+      "feature_count": 293,
+      "accuracy": 0.8538812785388128,
+      "precision_macro": 0.8342043050889636,
+      "recall_macro": 0.8166542914501004,
+      "f1_macro": 0.8244228056127506
+    }
+  ],
+  "chosen_feature_count": 30,
+  "chosen_feature_count_label": "top_30",
+  "test": {
+    "accuracy": 0.8584474885844748,
+    "precision_macro": 0.8829946710493551,
+    "recall_macro": 0.8574008378479957,
+    "f1_macro": 0.8688024333857668
+  },
+  "split_rows": {
+    "train": 1022,
+    "validation": 219,
+    "test": 219
+  }
+}
