@@ -1,4 +1,4 @@
-Kết quả thí nghiệm lưu trong excel:
+﻿Kết quả thí nghiệm lưu trong excel:
 https://1drv.ms/x/c/37dad5dc96204f3c/IQCA0MbKOM-JRL4LWtZGwjFZAX9PIsP3Dry2Ky6fUSx0Av0?e=AbLAGT
 
 Ngày 9/11/2026:(Phạm Quang Trung)
@@ -11,3 +11,20 @@ Ngáy 10/11/2026: (Phạm Quang Trung)
 - Tiến hành thí nghiệm mô hình logistic regression, xử lý từng biến missing với chiến lược tốt nhất cho mô hình, 
 rồi kết hợp xử lý outlier, rồi kết hợp scaler normalise và standard riêng biệt, rồi kết hợp scaler tốt nhất cho từng biến
 biến numeric và continous. Kết quả thí nghiệm lưu vào folder LR/Logistic_ngay10_th11
+
+Ngày 12/11/2026: (Trần Ngọc Phong)
+- Tạo notebook preprocessing.ipynb để tập trung chạy các bước tiền xử lý và baseline; giải thích mục đích baseline và cách chạy file .py từ notebook.
+- Tạo/chạy baseline Gradient Boosting Regressor để dự đoán SalePrice, lưu metrics và bản sao script theo từng lần chạy.
+- Bắt đầu các thử nghiệm xử lý missing và outlier; kiểm tra lỗi đường dẫn dữ liệu, đường dẫn chạy trong notebook và lỗi thiếu thư viện xgboost. Chuyển các thử nghiệm liên quan sang Gradient Boosting để chạy trong môi trường hiện tại.
+
+Ngày 13/11/2026: (Trần Ngọc Phong)
+- Thử kết hợp xử lý missing, outlier và các scaler; so sánh MinMaxScaler, nhị phân hóa theo median, MaxAbsScaler và Normalizer.
+- Tạo thử nghiệm phân loại SalePrice thành 3 nhóm: dưới 150.000; từ 150.000 đến dưới 250.000; từ 250.000 trở lên. Dùng Gradient Boosting Classifier và vẽ confusion matrix, ROC curve, precision-recall curve, learning curve.
+- Lưu kết quả từng lần chạy gồm metrics, biểu đồ và bản sao file .py để có thể xem lại/thực hiện lại.
+- Tạo thư mục feature_selection riêng. Dùng feature importance của Gradient Boosting để chọn số lượng đặc trưng; so sánh top 10, 20, 30 và toàn bộ. Validation chọn top 30 (macro-F1 = 0,8505); kết quả test macro-F1 = 0,8688.
+- Lưu danh sách đặc trưng được chọn, bảng importance, biểu đồ, metrics và bản sao script trong thư mục kết quả feature selection; thêm lệnh chạy vào preprocessing.ipynb.
+
+Ngày 14/11/2026: (Trần Ngọc Phong)
+- Cập nhật nhật ký dự án theo các công việc đã thực hiện trong những ngày vừa qua, giữ nguyên các mục nhật ký trước đó của thành viên.
+
+
