@@ -26,5 +26,7 @@ Ngày 13/11/2026: (Trần Ngọc Phong)
 
 Ngày 14/11/2026: (Trần Ngọc Phong)
 - Cập nhật nhật ký dự án theo các công việc đã thực hiện trong những ngày vừa qua, giữ nguyên các mục nhật ký trước đó của thành viên.
+- Tạo thử nghiệm tìm siêu tham số cho Gradient Boosting Classifier kết hợp chọn top 30 đặc trưng; tìm 15 cấu hình bằng Stratified 3-fold cross-validation, chọn theo macro-F1. Cấu hình tốt nhất có CV macro-F1 = 0,8493; test macro-F1 = 0,8615. Lưu metrics, bảng CV, danh sách đặc trưng, biểu đồ và bản sao script trong hyperparameter_tuning/results.
+
 
 

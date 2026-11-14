@@ -1,0 +1,43 @@
+{
+  "model": "Gradient Boosting Classifier",
+  "target_classes": {
+    "0": "SalePrice < 150000",
+    "1": "150000 <= SalePrice < 250000",
+    "2": "SalePrice >= 250000"
+  },
+  "selection_metric": "macro-F1",
+  "cross_validation": {
+    "type": "StratifiedKFold",
+    "folds": 3,
+    "candidates": 15,
+    "best_macro_f1": 0.8493434341682932
+  },
+  "best_parameters": {
+    "model__subsample": 1.0,
+    "model__n_estimators": 200,
+    "model__min_samples_leaf": 5,
+    "model__max_depth": 3,
+    "model__learning_rate": 0.03
+  },
+  "validation": {
+    "accuracy": 0.8447488584474886,
+    "precision_macro": 0.8301880188018802,
+    "recall_macro": 0.8093299966082741,
+    "f1_macro": 0.8182011263841161,
+    "log_loss": 0.3893257137192144
+  },
+  "test": {
+    "accuracy": 0.8538812785388128,
+    "precision_macro": 0.8796116851229634,
+    "recall_macro": 0.8475969162793682,
+    "f1_macro": 0.8615235819536894,
+    "log_loss": 0.3524302676135884
+  },
+  "selected_feature_count": 30,
+  "preprocessing": "Fold-fitted IQR capping, semantic missing handling, median/mode imputation, One-Hot encoding, MaxAbsScaler, top 30 Gradient Boosting importance features.",
+  "split_rows": {
+    "train": 1022,
+    "validation": 219,
+    "test": 219
+  }
+}
