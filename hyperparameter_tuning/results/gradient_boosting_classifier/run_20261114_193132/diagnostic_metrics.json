@@ -1,0 +1,39 @@
+{
+  "model": "Gradient Boosting Classifier",
+  "source_metrics": "C:\\Users\\Fong\\Documents\\VScode\\ML\\Chanllenge_1_House_Prices\\hyperparameter_tuning\\results\\gradient_boosting_classifier\\run_20261114_193132\\metrics.json",
+  "prediction_split": "same stratified 15% held-out test split as the tuning run",
+  "reproduced_test_metrics": {
+    "accuracy": 0.8538812785388128,
+    "precision_macro": 0.8796116851229634,
+    "recall_macro": 0.8475969162793682,
+    "f1_macro": 0.8615235819536894,
+    "log_loss": 0.3524302676135884
+  },
+  "roc_auc_ovr_by_class": {
+    "Low (<150k)": 0.9638822321122904,
+    "Medium (150k-250k)": 0.9301928656767366,
+    "High (>=250k)": 0.9883942766295708
+  },
+  "confusion_matrix_labels": [
+    "Low (<150k)",
+    "Medium (150k-250k)",
+    "High (>=250k)"
+  ],
+  "confusion_matrix": [
+    [
+      82,
+      10,
+      0
+    ],
+    [
+      15,
+      77,
+      1
+    ],
+    [
+      0,
+      6,
+      28
+    ]
+  ]
+}
