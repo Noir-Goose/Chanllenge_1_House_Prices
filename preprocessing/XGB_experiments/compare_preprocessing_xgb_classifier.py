@@ -11,18 +11,24 @@ import shutil
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.metrics import (
     accuracy_score,
+    average_precision_score,
+    confusion_matrix,
     f1_score,
     log_loss,
+    precision_recall_curve,
     precision_score,
     recall_score,
+    roc_auc_score,
+    roc_curve,
 )
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, StandardScaler
+from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, StandardScaler, label_binarize
 from xgboost import XGBClassifier
 
 
@@ -136,6 +142,108 @@ def evaluate(model: Pipeline, X_valid: pd.DataFrame, y_valid: pd.Series) -> dict
     }
 
 
+def save_diagnostic_plots(model, X_valid, y_valid, X_train, y_train, scaler,
+                          cap_outliers, plot_dir: Path, config_key: str) -> None:
+    """Save validation confusion/ROC/PR plots and a train/validation learning curve."""
+    plot_dir.mkdir(parents=True, exist_ok=True)
+    predictions = model.predict(X_valid)
+    probabilities = model.predict_proba(X_valid)
+    class_names = ["Low (<150k)", "Medium (150k-250k)", "High (>=250k)"]
+
+    matrix = confusion_matrix(y_valid, predictions, labels=CLASS_LABELS)
+    fig, ax = plt.subplots(figsize=(6.5, 5.5))
+    image = ax.imshow(matrix, cmap="Blues")
+    ax.set(
+        xticks=CLASS_LABELS, yticks=CLASS_LABELS,
+        xticklabels=class_names, yticklabels=class_names,
+        xlabel="Predicted price group", ylabel="Actual price group",
+        title=f"Confusion Matrix - {config_key}",
+    )
+    plt.setp(ax.get_xticklabels(), rotation=20, ha="right")
+    for row in range(len(CLASS_LABELS)):
+        for col in range(len(CLASS_LABELS)):
+            ax.text(col, row, str(matrix[row, col]), ha="center", va="center",
+                    color="white" if matrix[row, col] > matrix.max() / 2 else "black")
+    fig.colorbar(image, ax=ax)
+    fig.tight_layout()
+    fig.savefig(plot_dir / "confusion_matrix.png", dpi=150)
+    plt.close(fig)
+
+    y_binary = label_binarize(y_valid, classes=CLASS_LABELS)
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    aucs = []
+    for index, name in enumerate(class_names):
+        fpr, tpr, _ = roc_curve(y_binary[:, index], probabilities[:, index])
+        auc_value = roc_auc_score(y_binary[:, index], probabilities[:, index])
+        aucs.append(auc_value)
+        ax.plot(fpr, tpr, label=f"{name} (AUC={auc_value:.3f})")
+    ax.plot([0, 1], [0, 1], "k--", label="Random")
+    ax.set(xlabel="False Positive Rate", ylabel="True Positive Rate",
+           title=f"One-vs-Rest ROC - {config_key}")
+    ax.legend(loc="lower right", fontsize="small")
+    fig.tight_layout()
+    fig.savefig(plot_dir / "roc_curve.png", dpi=150)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    average_precisions = []
+    for index, name in enumerate(class_names):
+        precision, recall, _ = precision_recall_curve(y_binary[:, index], probabilities[:, index])
+        ap = average_precision_score(y_binary[:, index], probabilities[:, index])
+        average_precisions.append(ap)
+        ax.plot(recall, precision, label=f"{name} (AP={ap:.3f})")
+    ax.set(xlabel="Recall", ylabel="Precision",
+           title=f"One-vs-Rest Precision-Recall - {config_key}")
+    ax.legend(loc="best", fontsize="small")
+    fig.tight_layout()
+    fig.savefig(plot_dir / "precision_recall_curve.png", dpi=150)
+    plt.close(fig)
+
+    train_sizes = sorted(set(max(30, int(len(X_train) * fraction))
+                             for fraction in (0.2, 0.4, 0.6, 0.8, 1.0)))
+    curve_rows = []
+    for size in train_sizes:
+        if size >= len(X_train):
+            indices = np.arange(len(X_train))
+        else:
+            splitter = StratifiedShuffleSplit(
+                n_splits=1, train_size=size, random_state=RANDOM_STATE + size
+            )
+            indices, _ = next(splitter.split(X_train, y_train))
+        X_subset = X_train.iloc[indices].copy()
+        y_subset = y_train.iloc[indices].copy()
+        if cap_outliers:
+            subset_bounds = fit_iqr_bounds(X_subset)
+            X_subset = apply_bounds(X_subset, subset_bounds)
+            X_valid_curve = apply_bounds(X_valid, subset_bounds)
+        else:
+            X_valid_curve = X_valid
+        curve_model = make_model(X_subset, scaler=scaler)
+        curve_model.fit(X_subset, y_subset)
+        train_score = f1_score(y_subset, curve_model.predict(X_subset),
+                               average="macro", zero_division=0)
+        valid_score = f1_score(y_valid, curve_model.predict(X_valid_curve),
+                               average="macro", zero_division=0)
+        curve_rows.append({
+            "training_rows": int(size),
+            "train_macro_f1": float(train_score),
+            "validation_macro_f1": float(valid_score),
+        })
+
+    fig, ax = plt.subplots(figsize=(7, 5.5))
+    ax.plot([row["training_rows"] for row in curve_rows],
+            [row["train_macro_f1"] for row in curve_rows], marker="o", label="Train macro-F1")
+    ax.plot([row["training_rows"] for row in curve_rows],
+            [row["validation_macro_f1"] for row in curve_rows], marker="o", label="Validation macro-F1")
+    ax.set(xlabel="Training rows", ylabel="Macro-F1",
+           title=f"Learning Curve - {config_key}")
+    ax.grid(alpha=0.3)
+    ax.legend()
+    fig.tight_layout()
+    fig.savefig(plot_dir / "learning_curve.png", dpi=150)
+    plt.close(fig)
+
+
 def main() -> None:
     if not TRAIN_PATH.exists():
         raise FileNotFoundError(f"Training data not found: {TRAIN_PATH}")
@@ -154,6 +262,8 @@ def main() -> None:
         X, y, test_size=0.2, random_state=RANDOM_STATE, stratify=y
     )
 
+    run_dir = RESULTS_ROOT / datetime.now().strftime("run_%Y%m%d_%H%M%S")
+    run_dir.mkdir(parents=True, exist_ok=False)
     result_rows = []
     detailed_results = {}
     for key, label, scaler, cap_outliers in CONFIGURATIONS:
@@ -168,6 +278,11 @@ def main() -> None:
         model = make_model(X_train_run, scaler=scaler)
         model.fit(X_train_run, y_train)
         metrics = evaluate(model, X_valid_run, y_valid)
+        plot_dir = run_dir / "plots" / key
+        save_diagnostic_plots(
+            model, X_valid_run, y_valid, X_train, y_train, scaler,
+            cap_outliers, plot_dir, key,
+        )
         detailed_results[key] = {
             "label": label,
             "validation": metrics,
@@ -176,8 +291,6 @@ def main() -> None:
         result_rows.append({"configuration": label, **metrics})
         print(f"{label}: macro-F1={metrics['f1_macro']:.4f}, log-loss={metrics['log_loss']:.4f}")
 
-    run_dir = RESULTS_ROOT / datetime.now().strftime("run_%Y%m%d_%H%M%S")
-    run_dir.mkdir(parents=True, exist_ok=False)
     summary = pd.DataFrame(result_rows)
     summary.to_csv(run_dir / "comparison.csv", index=False, encoding="utf-8-sig")
     metrics = {
