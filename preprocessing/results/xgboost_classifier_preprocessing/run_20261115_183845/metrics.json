@@ -1,0 +1,149 @@
+{
+  "model": "XGBoost Classifier",
+  "target_classes": {
+    "0": "Low (<150k)",
+    "1": "Medium (150k-250k)",
+    "2": "High (>=250k)"
+  },
+  "split": {
+    "train_fraction": 0.8,
+    "validation_fraction": 0.2,
+    "random_state": 42,
+    "stratified": true,
+    "train_rows": 1168,
+    "validation_rows": 292
+  },
+  "model_parameters": {
+    "n_estimators": 300,
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "objective": "multi:softprob",
+    "eval_metric": "mlogloss",
+    "tree_method": "hist",
+    "random_state": 42
+  },
+  "configurations": {
+    "missing_only": {
+      "label": "Missing handling",
+      "validation": {
+        "accuracy": 0.8527397260273972,
+        "precision_macro": 0.8677540288379982,
+        "recall_macro": 0.8275592272051754,
+        "f1_macro": 0.8439626104300549,
+        "log_loss": 0.3220790197023128
+      },
+      "iqr_bounds": {}
+    },
+    "missing_outlier": {
+      "label": "Missing + outlier capping",
+      "validation": {
+        "accuracy": 0.8595890410958904,
+        "precision_macro": 0.879488157354921,
+        "recall_macro": 0.8329792814057173,
+        "f1_macro": 0.8513165771357457,
+        "log_loss": 0.3254240172451556
+      },
+      "iqr_bounds": {
+        "LotArea": [
+          1418.125,
+          17869.125
+        ],
+        "GrLivArea": [
+          150.375,
+          2751.375
+        ],
+        "TotalBsmtSF": [
+          31.5,
+          2067.5
+        ],
+        "LotFrontage": [
+          28.875,
+          111.875
+        ],
+        "GarageArea": [
+          -19.0,
+          933.0
+        ],
+        "MasVnrArea": [
+          -252.375,
+          420.625
+        ]
+      }
+    },
+    "missing_outlier_minmax": {
+      "label": "Missing + outlier + MinMaxScaler",
+      "validation": {
+        "accuracy": 0.8527397260273972,
+        "precision_macro": 0.8743059163059163,
+        "recall_macro": 0.8275592272051754,
+        "f1_macro": 0.846194582250571,
+        "log_loss": 0.323821571915562
+      },
+      "iqr_bounds": {
+        "LotArea": [
+          1418.125,
+          17869.125
+        ],
+        "GrLivArea": [
+          150.375,
+          2751.375
+        ],
+        "TotalBsmtSF": [
+          31.5,
+          2067.5
+        ],
+        "LotFrontage": [
+          28.875,
+          111.875
+        ],
+        "GarageArea": [
+          -19.0,
+          933.0
+        ],
+        "MasVnrArea": [
+          -252.375,
+          420.625
+        ]
+      }
+    },
+    "missing_outlier_standard": {
+      "label": "Missing + outlier + StandardScaler",
+      "validation": {
+        "accuracy": 0.8458904109589042,
+        "precision_macro": 0.862542832909245,
+        "recall_macro": 0.8221610280618935,
+        "f1_macro": 0.8386605623426924,
+        "log_loss": 0.3196470676413245
+      },
+      "iqr_bounds": {
+        "LotArea": [
+          1418.125,
+          17869.125
+        ],
+        "GrLivArea": [
+          150.375,
+          2751.375
+        ],
+        "TotalBsmtSF": [
+          31.5,
+          2067.5
+        ],
+        "LotFrontage": [
+          28.875,
+          111.875
+        ],
+        "GarageArea": [
+          -19.0,
+          933.0
+        ],
+        "MasVnrArea": [
+          -252.375,
+          420.625
+        ]
+      }
+    }
+  },
+  "note": "Kaggle test.csv has no labels; metrics are reported on the stratified validation split."
+}
