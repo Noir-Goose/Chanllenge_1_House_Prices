@@ -1,0 +1,14 @@
+HOUSE PRICES: BEST MISSING + OUTLIER (THEO KẾT QUẢ HIỆN CÓ) + 4 BIỂU ĐỒ
+
+Đang huấn luyện mô hình Random Forest (Missing + Outlier + StandardScaler)...
+
+--- KẾT QUẢ ĐÁNH GIÁ TRÊN TẬP VALIDATION ---
+Accuracy       : 0.8836
+Precision Macro: 0.8842
+Recall Macro   : 0.8754
+F1 Macro       : 0.8787
+Log Loss       : 0.4892
+Đang tính toán Learning Curve...
+
+Số dòng train còn lại sau khi xử lý: 1168
+Số dòng validation còn lại sau khi xử lý: 292

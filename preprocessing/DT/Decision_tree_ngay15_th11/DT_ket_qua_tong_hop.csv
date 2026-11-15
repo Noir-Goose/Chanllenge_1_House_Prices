@@ -1,0 +1,7 @@
+﻿Buoc,File,Accuracy,Precision_Macro,Recall_Macro,F1_Macro,Log_Loss
+0_baseline,DT_baseline.py,0.7842,0.7592,0.7595,0.7593,7.7765
+1_missing,Tree_missing.py,0.7808,0.7521,0.7615,0.7563,7.9
+2_missing_outlier,DT_miss_out.py,0.7808,0.7521,0.7615,0.7563,7.9
+3_minmax,DT_minmax.py,0.774,0.7448,0.7561,0.7497,8.1469
+4_standard,DT_standard.py,0.7808,0.7521,0.7615,0.7563,7.9
+5_mixedscaling,DT_mixedscaling.py,0.7774,0.7563,0.7541,0.7551,8.0234

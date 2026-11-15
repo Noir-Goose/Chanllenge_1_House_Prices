@@ -1,0 +1,11 @@
+﻿Selected_Feature
+categorical__ExterQual_TA
+categorical__BsmtQual_TA
+numeric__OverallQual
+numeric__YearBuilt
+numeric__TotalBsmtSF
+numeric__1stFlrSF
+numeric__GrLivArea
+numeric__FullBath
+numeric__GarageCars
+numeric__GarageArea

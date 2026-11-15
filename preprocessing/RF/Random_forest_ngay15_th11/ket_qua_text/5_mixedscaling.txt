@@ -1,0 +1,52 @@
+HOUSE PRICES: BEST MISSING + OUTLIER + MIXED SCALING + ORDINAL MAPPING + 4 BIỂU ĐỒ
+
+Đang huấn luyện mô hình Random Forest (Best Missing + Outlier + Skew Mixed Scaling + Ordinal)...
+
+--- SKEWNESS VÀ SCALER THEO TỪNG BIẾN SỐ (TRAIN) ---
+      Feature  Skewness_train         Scaler
+      MiscVal       28.183542   MinMaxScaler
+     PoolArea       13.243711   MinMaxScaler
+    3SsnPorch        9.275201   MinMaxScaler
+ LowQualFinSF        8.880175   MinMaxScaler
+ KitchenAbvGr        4.818958   MinMaxScaler
+   BsmtFinSF2        4.206100   MinMaxScaler
+  ScreenPorch        3.970300   MinMaxScaler
+ BsmtHalfBath        3.776704   MinMaxScaler
+EnclosedPorch        3.048812   MinMaxScaler
+  OpenPorchSF        2.409455   MinMaxScaler
+      LotArea        2.075629   MinMaxScaler
+   BsmtFinSF1        1.898845   MinMaxScaler
+   WoodDeckSF        1.601420   MinMaxScaler
+     1stFlrSF        1.451296   MinMaxScaler
+    BsmtUnfSF        0.927787 StandardScaler
+    GrLivArea        0.798144   MinMaxScaler
+  OverallCond        0.789134 StandardScaler
+     2ndFlrSF        0.772552 StandardScaler
+ TotRmsAbvGrd        0.701398 StandardScaler
+ BsmtFullBath        0.692097 StandardScaler
+   Fireplaces        0.666836 StandardScaler
+     HalfBath        0.622913 StandardScaler
+    YearBuilt       -0.592825 StandardScaler
+ YearRemodAdd       -0.515217 StandardScaler
+  TotalBsmtSF        0.379740   MinMaxScaler
+   GarageCars       -0.310730 StandardScaler
+ BedroomAbvGr        0.303027 StandardScaler
+  OverallQual        0.226832 StandardScaler
+       MoSold        0.209897 StandardScaler
+       YrSold        0.117163 StandardScaler
+     FullBath        0.089708 StandardScaler
+   GarageArea        0.006115   MinMaxScaler
+
+Ordinal columns: ['ExterQual', 'ExterCond', 'BsmtQual', 'BsmtCond', 'HeatingQC', 'KitchenQual', 'FireplaceQu', 'GarageQual', 'GarageCond', 'PoolQC', 'BsmtFinType1', 'BsmtFinType2', 'GarageFinish', 'Functional', 'LandSlope', 'LotShape', 'Utilities', 'PavedDrive', 'CentralAir', 'Street', 'Alley']
+Nominal columns: ['MSSubClass', 'MSZoning', 'LotFrontage', 'LandContour', 'LotConfig', 'Neighborhood', 'Condition1', 'Condition2', 'BldgType', 'HouseStyle', 'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd', 'MasVnrType', 'MasVnrArea', 'Foundation', 'Heating', 'Electrical', 'GarageType', 'GarageYrBlt', 'MiscFeature', 'SaleType', 'SaleCondition']
+
+--- KẾT QUẢ ĐÁNH GIÁ TRÊN TẬP VALIDATION ---
+Accuracy       : 0.8973
+Precision Macro: 0.9008
+Recall Macro   : 0.8910
+F1 Macro       : 0.8943
+Log Loss       : 0.4897
+Đang tính toán Learning Curve...
+
+Số dòng train còn lại sau khi xử lý: 1168
+Số dòng validation còn lại sau khi xử lý: 292

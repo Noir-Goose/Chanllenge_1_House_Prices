@@ -1,0 +1,14 @@
+ĐÁNH GIÁ MÔ HÌNH HOUSE PRICES VỚI CHIẾN LƯỢC XỬ LÝ MISSING + 4 BIỂU ĐỒ
+
+Đang huấn luyện mô hình Random Forest (Best Missing per Feature)...
+
+--- KẾT QUẢ ĐÁNH GIÁ TRÊN TẬP VALIDATION ---
+Accuracy       : 0.8870
+Precision Macro: 0.8872
+Recall Macro   : 0.8828
+F1 Macro       : 0.8843
+Log Loss       : 0.3972
+Đang tính toán Learning Curve...
+
+Số dòng train còn lại sau khi xử lý: 1168
+Số dòng validation còn lại sau khi xử lý: 292

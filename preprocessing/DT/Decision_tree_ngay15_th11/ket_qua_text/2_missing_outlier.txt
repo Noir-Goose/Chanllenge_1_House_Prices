@@ -1,0 +1,14 @@
+HOUSE PRICES: BEST MISSING + OUTLIER (THEO KẾT QUẢ HIỆN CÓ) + 4 BIỂU ĐỒ
+
+Đang huấn luyện mô hình Decision Tree (Best Missing + Outlier (available evidence))...
+
+--- KẾT QUẢ ĐÁNH GIÁ TRÊN TẬP VALIDATION ---
+Accuracy       : 0.7808
+Precision Macro: 0.7521
+Recall Macro   : 0.7615
+F1 Macro       : 0.7563
+Log Loss       : 7.9000
+Đang tính toán Learning Curve...
+
+Số dòng train còn lại sau khi xử lý: 1168
+Số dòng validation còn lại sau khi xử lý: 292

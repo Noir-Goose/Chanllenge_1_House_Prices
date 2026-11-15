@@ -1,0 +1,14 @@
+BASELINE DECISION TREE: KHÔNG XỬ LÝ MISSING / OUTLIER / SCALER + 4 BIỂU ĐỒ
+
+Đang huấn luyện mô hình Decision Tree (Baseline - no Missing/Outlier/Scaler)...
+
+--- KẾT QUẢ ĐÁNH GIÁ TRÊN TẬP VALIDATION ---
+Accuracy       : 0.7842
+Precision Macro: 0.7592
+Recall Macro   : 0.7595
+F1 Macro       : 0.7593
+Log Loss       : 7.7765
+Đang tính toán Learning Curve...
+
+Số dòng train còn lại sau khi xử lý: 1168
+Số dòng validation còn lại sau khi xử lý: 292

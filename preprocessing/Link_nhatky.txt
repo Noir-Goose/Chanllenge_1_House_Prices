@@ -11,3 +11,18 @@ Ngáy 10/11/2026: (Phạm Quang Trung)
 - Tiến hành thí nghiệm mô hình logistic regression, xử lý từng biến missing với chiến lược tốt nhất cho mô hình, 
 rồi kết hợp xử lý outlier, rồi kết hợp scaler normalise và standard riêng biệt, rồi kết hợp scaler tốt nhất cho từng biến
 biến numeric và continous. Kết quả thí nghiệm lưu vào folder LR/Logistic_ngay10_th11
+
+Ngày 15/11/2026:(Nguyễn Thanh Quốc Việt)
+- Làm thí nghiệm Random Forest chọn chiến lược missing/outlier tốt nhất cho RF (tiêu chí F1 Macro -> Recall Macro -> Log Loss).
+  + Missing: xóa cột Fence, BsmtExposure; điền mode PoolQC, MiscFeature, GarageFinish, GarageCond, BsmtFinType1; 11 biến còn lại coi "Missing" là một nhóm.
+  + Outlier: Z-score cho LotArea, GrLivArea, TotalBsmtSF; IQR cho LotFrontage, GarageArea, MasVnrArea.
+- 6 file: RF_baseline (0), RandomForest_missing (1), RF_miss_out (2), RF_minmax (3), RF_standard (4), RF_mixedscaling (5)
+-Nhận xét(RF): xử lý missing cải thiện rõ nhất; outlier và scaler không giúp RF (RF không nhạy thang đo); bước 5 cao nhất nhưng có thể do ordinal mapping, cần đối chiếu thêm
+Kết quả + hình lưu trong folder Random_forest_ngay15_th11.
+
+- Làm thí nghiệm Decision Tree chọn chiến lược missing/outlier tốt nhất cho DT (tiêu chí F1 Macro -> Recall Macro -> Log Loss).
+  + Missing: xóa cột PoolQC, MasVnrType, FireplaceQu, GarageType, GarageYrBlt, GarageQual, BsmtFinType2, BsmtCond; điền mode 10 biến còn lại (MiscFeature, Alley, Fence, LotFrontage, GarageFinish, GarageCond, BsmtExposure, BsmtQual, BsmtFinType1, MasVnrArea).
+  + Outlier: chỉ LotArea dùng IQR
+- 6 file: DT_baseline (0), Tree_missing (1), DT_miss_out (2), DT_minmax (3), DT_standard (4), DT_mixedscaling (5)
+-Nhận xét: các bước tiền xử lý gần như không cải thiện so với baseline; chênh lệch chỉ vài mẫu trên 292 nên khó kết luận. Log Loss ~7.8-8.1 do cây không cắt tỉa.
+Kết quả + hình lưu trong folder Decision_tree_ngay15_th11.

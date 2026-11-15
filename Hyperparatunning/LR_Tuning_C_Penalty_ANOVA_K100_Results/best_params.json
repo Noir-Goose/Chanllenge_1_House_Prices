@@ -1,0 +1,13 @@
+{
+  "C": 0.1,
+  "penalty": "l2",
+  "solver": "lbfgs",
+  "l1_ratio": null,
+  "class_weight": "balanced",
+  "max_iter": 5000,
+  "random_state": 42,
+  "feature_selection": "ANOVA_F",
+  "k": 100,
+  "scaler": "StandardScaler",
+  "selection_metric": "CV_F1_Macro_Mean"
+}

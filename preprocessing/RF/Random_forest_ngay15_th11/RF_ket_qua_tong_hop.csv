@@ -1,0 +1,7 @@
+﻿Buoc,File,Accuracy,Precision_Macro,Recall_Macro,F1_Macro,Log_Loss
+0_baseline,RF_baseline.py,0.8767,0.8776,0.8653,0.8707,0.4856
+1_missing,RandomForest_missing.py,0.887,0.8872,0.8828,0.8843,0.3972
+2_missing_outlier,RF_miss_out.py,0.8836,0.8842,0.8754,0.8787,0.489
+3_minmax,RF_minmax.py,0.8836,0.8842,0.8754,0.8787,0.4894
+4_standard,RF_standard.py,0.8836,0.8842,0.8754,0.8787,0.4892
+5_mixedscaling,RF_mixedscaling.py,0.8973,0.9008,0.891,0.8943,0.4897
